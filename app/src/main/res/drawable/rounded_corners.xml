@@ -1,0 +1,6 @@
+<!-- rounded_corners.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="50dp" /> <!-- Ajusta este valor según el radio deseado -->
+    <solid android:color="@android:color/transparent" /> <!-- Color de fondo transparente -->
+</shape>

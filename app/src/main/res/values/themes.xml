@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Definición de tu tema -->
+    <style name="Theme.Cancionero" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- ... otras configuraciones ... -->
+        <item name="colorPrimary">@color/blue</item>
+        <!-- Configuración del ícono de hamburguesa -->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="navigationViewStyle">@style/NavigationViewStyle</item>
+    </style>
+
+    <!-- Estilo personalizado para el ícono de hamburguesa -->
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item> <!-- Puedes ajustar el color según tus necesidades -->
+    </style>
+
+    <style name="NavigationViewStyle" parent="Widget.Design.NavigationView">
+        <item name="android:textSize">18sp</item> <!-- Ajusta el tamaño del texto según tus preferencias -->
+    </style>
+
+</resources>

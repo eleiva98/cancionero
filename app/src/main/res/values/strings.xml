@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="app_name">Cancionero Seminario</string>
+    <string name="navigation_drawer_open">Abrir barra lateral</string>
+    <string name="navigation_drawer_close">Cerrar barra lateral</string>
+
+    <string name="section1">Entrada</string>
+    <string name="section2">Presentación de Dones</string>
+    <string name="section3">Comunión</string>
+    <string name="section4">Post - Comunión</string>
+    <string name="section5">Varios - Himnos</string>
+    <string name="section6">Latín</string>
+    <string name="section7">Ssmo. Cuerpo y Sangre de Cristo</string>
+    <string name="section8">Sgdo. Corazón de Jesús</string>
+    <string name="section9">Sacramentos y Sacramentales</string>
+    <string name="section10">Vocacionales</string>
+    <string name="section11">Adviento</string>
+    <string name="section12">Navidad</string>
+    <string name="section13">Cuaresma</string>
+    <string name="section14">Pascua</string>
+    <string name="section15">Pentecostés</string>
+    <string name="section16">Virgen María</string>
+    <string name="section17">Salmos</string>
+
+
+</resources>

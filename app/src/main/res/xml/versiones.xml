@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  - Escáner QR con el cancionero para la misa. Al escanear un QR, Se actualizan los números de cantos.
+  - Acordes
+    - Link a YouTube con el audio
+    - Buscador de canciones por letra y número.
+    - Ir a canción por número de canto
+    - Proponer poner al ppo el modo avión para evitar distracciones
+    - Sugerir una canción. Adjuntar letra, link del audio.
+    - Botón para llevar arriba
+    - Agrandar tamaño de letra
+    - Links a canciones como botones
+    - Ajustes. Acerca de.
+    -->
+<full-backup-content>
+</full-backup-content>

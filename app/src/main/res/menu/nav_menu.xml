@@ -1,0 +1,73 @@
+<!-- res/menu/nav_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_canciones1"
+        android:title="@string/section1" />
+
+    <item
+        android:id="@+id/menu_canciones2"
+        android:title="@string/section2" />
+
+    <item
+        android:id="@+id/menu_canciones3"
+        android:title="@string/section3" />
+
+    <item
+        android:id="@+id/menu_canciones4"
+        android:title="@string/section4" />
+
+    <item
+        android:id="@+id/menu_canciones5"
+        android:title="@string/section5" />
+
+    <item
+        android:id="@+id/menu_canciones6"
+        android:title="@string/section6" />
+
+    <item
+        android:id="@+id/menu_canciones7"
+        android:title="@string/section7" />
+
+    <item
+        android:id="@+id/menu_canciones8"
+        android:title="@string/section8" />
+
+    <item
+        android:id="@+id/menu_canciones9"
+        android:title="@string/section9" />
+
+    <item
+        android:id="@+id/menu_canciones10"
+        android:title="@string/section10" />
+
+    <item
+        android:id="@+id/menu_canciones11"
+        android:title="@string/section11" />
+
+    <item
+        android:id="@+id/menu_canciones12"
+        android:title="@string/section12" />
+
+    <item
+        android:id="@+id/menu_canciones13"
+        android:title="@string/section13" />
+
+    <item
+        android:id="@+id/menu_canciones14"
+        android:title="@string/section14" />
+
+    <item
+        android:id="@+id/menu_canciones15"
+        android:title="@string/section15" />
+
+    <item
+        android:id="@+id/menu_canciones16"
+        android:title="@string/section16" />
+
+    <item
+        android:id="@+id/menu_canciones17"
+        android:title="@string/section17" />
+
+
+</menu>
