@@ -1,7 +1,7 @@
 package com.example.cancionero
 
 import android.content.Context
-import android.provider.Settings.Global.getString
+//import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,41 +10,59 @@ import androidx.viewpager.widget.PagerAdapter
 
 
 
-class CustomPagerAdapter (private val context: Context, private val htmlFiles: List<Int>) : PagerAdapter() {
+class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
     // Tamaño de letra actual seleccionado por el usuario
-    private val createdWebViews = mutableListOf<WebView>()
-
-    // Otros métodos de la clase
+    // private val createdWebViews = mutableListOf<WebView>()
+    
+    // Lista de URLs alojadas en Firebase Hosting
+    private val htmlUrls = listOf(
+        "https://cancionero-2024.web.app/canciones1.htm",
+        "https://cancionero-2024.web.app/canciones2.htm",
+        "https://cancionero-2024.web.app/canciones3.htm",
+        "https://cancionero-2024.web.app/canciones4.htm",
+        "https://cancionero-2024.web.app/canciones5.htm",
+        "https://cancionero-2024.web.app/canciones6.htm",
+        "https://cancionero-2024.web.app/canciones7.htm",
+        "https://cancionero-2024.web.app/canciones8.htm",
+        "https://cancionero-2024.web.app/canciones9.htm",
+        "https://cancionero-2024.web.app/canciones10.htm",
+        "https://cancionero-2024.web.app/canciones11.htm",
+        "https://cancionero-2024.web.app/canciones12.htm",
+        "https://cancionero-2024.web.app/canciones13.htm",
+        "https://cancionero-2024.web.app/canciones14.htm",
+        "https://cancionero-2024.web.app/canciones15.htm",
+        "https://cancionero-2024.web.app/canciones16.htm",
+        "https://cancionero-2024.web.app/canciones17.htm",)
+   /* private val webViewMap = mutableMapOf<Int, WebView>()*/
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val webView = createWebView()
-        createdWebViews.add(webView)
+        //createdWebViews.add(webView)
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.item_html_display, container, false)
 
         val webViewContainer: ViewGroup = view.findViewById(R.id.webView)
         webViewContainer.addView(webView)
-        //updateWebViewTextSize(webView, textSize)
 
-       webView.loadUrl("file:///android_res/raw/${htmlFiles[position]}")
+
+       webView.loadUrl(htmlUrls[position])
+      /*  webViewMap[position] = webView*/
 
         container.addView(view)
         return view
     }
 
-    fun getSectionName(position: Int): String {
+    /*fun getSectionName(position: Int): String {
         val sectionNames = arrayOf(
             R.string.section1, R.string.section2, R.string.section3, // Agrega todos los nombres de las secciones aquí
         )
         return context.getString(sectionNames[position])
-    }
+    }*/
 
 
 
-    override fun getCount(): Int {
-        return htmlFiles.size
-    }
+    override fun getCount(): Int {return htmlUrls.size}
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`
@@ -54,6 +72,10 @@ class CustomPagerAdapter (private val context: Context, private val htmlFiles: L
         container.removeView(`object` as View)
     }
 
+    /*fun getCurrentWebView(position: Int): WebView?{
+        return webViewMap[position]
+    }*/
+
     private fun createWebView(): WebView {
         val webView = WebView(context)
 
@@ -61,8 +83,7 @@ class CustomPagerAdapter (private val context: Context, private val htmlFiles: L
         webView.settings.builtInZoomControls = true
         webView.settings.displayZoomControls = false
         webView.settings.domStorageEnabled = true
-        return webView
-    }
+        return webView}
 
 
 }

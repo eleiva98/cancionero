@@ -2,25 +2,30 @@ package com.example.cancionero
 
 import android.os.Bundle
 import android.view.MenuItem
+//import android.widget.Button
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
+import com.google.android.gms.common.util.CollectionUtils.listOf
 import com.google.android.material.navigation.NavigationView
 
 
+
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
-   private lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var viewPager: ViewPager
     private lateinit var pagerAdapter: CustomPagerAdapter
     private lateinit var toolbar: Toolbar
     private lateinit var menuNavigationHandler: MenuNavigationHandler
+    private lateinit var viewPagerManager: ViewPagerManager // Declarar viewPagerManager
+    //private lateinit var btnScrollToTop: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         // Inicialización de la barra de herramientas (Toolbar)
         toolbar = findViewById(R.id.toolbar)
@@ -29,10 +34,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Inicialización del DrawerLayout y configuración del DrawerInitializer
         drawerLayout = findViewById(R.id.drawerLayout)
         val drawerInitializer = DrawerInitializer(this, drawerLayout, toolbar)
-
         drawerInitializer.initialize()
 
+        // Inicialización del ViewPager
         viewPager = findViewById(R.id.viewPager)
+       /* btnScrollToTop = findViewById(R.id.btnScrollToTop)*/
+
+        // Inicialización de ViewPagerManager
+        viewPagerManager = ViewPagerManager(viewPager)
+
+
 
         val titles = listOf(
             R.string.section1, R.string.section2, R.string.section3,
@@ -45,18 +56,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         ViewPagerTitleUpdater(this, titles).attachToViewPager(viewPager)
 
+        // Configurar el adaptador con las URLs
+        pagerAdapter = CustomPagerAdapter(this)
+        viewPager.adapter = pagerAdapter
 
-        // Inicialización del ViewPagerManager y configuración de páginas HTML
-        val viewPagerManager = ViewPagerManager(this, viewPager)
-        viewPagerManager.initialize(getHtmlFiles())
-
+       /* btnScrollToTop.setOnClickListener{
+            val currentWebView = pagerAdapter.getCurrentWebView(viewPager.currentItem)
+            currentWebView?.scrollTo(0,0)
+        }*/
 
         // Inicialización del NavigationView y configuración del listener para la navegación
         val navigationView: NavigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener(this)
 
 
-        pagerAdapter = CustomPagerAdapter(this, getHtmlFiles())
+        pagerAdapter = CustomPagerAdapter(this)
         viewPager.adapter = pagerAdapter
 
         // Inicialización del MenuNavigationHandler para manejar la navegación
@@ -71,27 +85,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-
-    // Método para obtener la lista de archivos HTML
-    private fun getHtmlFiles() = listOf(
-        R.raw.canciones1,
-        R.raw.canciones2,
-        R.raw.canciones3,
-        R.raw.canciones4,
-        R.raw.canciones5,
-        R.raw.canciones6,
-        R.raw.canciones7,
-        R.raw.canciones8,
-        R.raw.canciones9,
-        R.raw.canciones10,
-        R.raw.canciones11,
-        R.raw.canciones12,
-        R.raw.canciones13,
-        R.raw.canciones14,
-        R.raw.canciones15,
-        R.raw.canciones16,
-        R.raw.canciones17,
-    )
 
 
 
