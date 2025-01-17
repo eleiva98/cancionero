@@ -28,16 +28,16 @@
             android:layout_below="@id/toolbar"
             android:contentDescription="WebView"/>
 
-       <!-- <Button
-            android:id="@id/btnScrollToTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+       <Button
+            android:id="@+id/btnScrollToTop"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
-            android:background="@drawable/buttontotop"
-            android:text="↑"
-            android:textColor="@color/white" -->
+            android:rotation="180"
+            android:background="@drawable/rounded_button_background"
+            />
 
     </RelativeLayout>
 

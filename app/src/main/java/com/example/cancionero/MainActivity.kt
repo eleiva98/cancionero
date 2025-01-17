@@ -2,7 +2,7 @@ package com.example.cancionero
 
 import android.os.Bundle
 import android.view.MenuItem
-//import android.widget.Button
+import android.widget.Button
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var toolbar: Toolbar
     private lateinit var menuNavigationHandler: MenuNavigationHandler
     private lateinit var viewPagerManager: ViewPagerManager // Declarar viewPagerManager
-    //private lateinit var btnScrollToTop: Button
+    private lateinit var btnScrollToTop: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +38,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Inicialización del ViewPager
         viewPager = findViewById(R.id.viewPager)
-       /* btnScrollToTop = findViewById(R.id.btnScrollToTop)*/
+        btnScrollToTop = findViewById(R.id.btnScrollToTop)
 
         // Inicialización de ViewPagerManager
         viewPagerManager = ViewPagerManager(viewPager)
-
-
 
         val titles = listOf(
             R.string.section1, R.string.section2, R.string.section3,
@@ -60,10 +58,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         pagerAdapter = CustomPagerAdapter(this)
         viewPager.adapter = pagerAdapter
 
-       /* btnScrollToTop.setOnClickListener{
+       btnScrollToTop.setOnClickListener{
             val currentWebView = pagerAdapter.getCurrentWebView(viewPager.currentItem)
             currentWebView?.scrollTo(0,0)
-        }*/
+        }
 
         // Inicialización del NavigationView y configuración del listener para la navegación
         val navigationView: NavigationView = findViewById(R.id.navigationView)

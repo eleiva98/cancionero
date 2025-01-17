@@ -1,7 +1,7 @@
 package com.example.cancionero
 
 import android.content.Context
-//import android.provider.Settings.Global.getString
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import androidx.viewpager.widget.PagerAdapter
 
 class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
     // Tamaño de letra actual seleccionado por el usuario
-    // private val createdWebViews = mutableListOf<WebView>()
+    private val createdWebViews = mutableListOf<WebView>()
     
     // Lista de URLs alojadas en Firebase Hosting
     private val htmlUrls = listOf(
@@ -33,11 +33,11 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         "https://cancionero-2024.web.app/canciones15.htm",
         "https://cancionero-2024.web.app/canciones16.htm",
         "https://cancionero-2024.web.app/canciones17.htm",)
-   /* private val webViewMap = mutableMapOf<Int, WebView>()*/
+   private val webViewMap = mutableMapOf<Int, WebView>()
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val webView = createWebView()
-        //createdWebViews.add(webView)
+
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.item_html_display, container, false)
@@ -47,20 +47,11 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
 
 
        webView.loadUrl(htmlUrls[position])
-      /*  webViewMap[position] = webView*/
+      webViewMap[position] = webView
 
         container.addView(view)
         return view
     }
-
-    /*fun getSectionName(position: Int): String {
-        val sectionNames = arrayOf(
-            R.string.section1, R.string.section2, R.string.section3, // Agrega todos los nombres de las secciones aquí
-        )
-        return context.getString(sectionNames[position])
-    }*/
-
-
 
     override fun getCount(): Int {return htmlUrls.size}
 
@@ -72,9 +63,9 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         container.removeView(`object` as View)
     }
 
-    /*fun getCurrentWebView(position: Int): WebView?{
+    fun getCurrentWebView(position: Int): WebView?{
         return webViewMap[position]
-    }*/
+    }
 
     private fun createWebView(): WebView {
         val webView = WebView(context)
