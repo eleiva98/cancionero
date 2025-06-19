@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cancionero"
         tools:targetApi="31">
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/PreferenceTheme"/>
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +30,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/section1"
-            android:theme="@style/Theme.Cancionero">
-        </activity>
+            android:theme="@style/Theme.Cancionero" />
     </application>
 
 </manifest>

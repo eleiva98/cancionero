@@ -1,26 +1,46 @@
 <resources>
 
-    <string name="app_name">Cancionero Seminario</string>
+    <string name="app_name">Cancionero Digital</string>
     <string name="navigation_drawer_open">Abrir barra lateral</string>
     <string name="navigation_drawer_close">Cerrar barra lateral</string>
+    <string name="semi">Seminario "Nuestra Señora de Guadalupe"</string>
+
 
     <string name="section1">Entrada</string>
-    <string name="section2">Presentación de Dones</string>
-    <string name="section3">Comunión</string>
-    <string name="section4">Post - Comunión</string>
-    <string name="section5">Varios - Himnos</string>
-    <string name="section6">Latín</string>
-    <string name="section7">Ssmo. Cuerpo y Sangre de Cristo</string>
-    <string name="section8">Sgdo. Corazón de Jesús</string>
-    <string name="section9">Sacramentos y Sacramentales</string>
-    <string name="section10">Vocacionales</string>
-    <string name="section11">Adviento</string>
-    <string name="section12">Navidad</string>
-    <string name="section13">Cuaresma</string>
-    <string name="section14">Pascua</string>
-    <string name="section15">Pentecostés</string>
-    <string name="section16">Virgen María</string>
-    <string name="section17">Salmos</string>
+    <string name="section2">Aclamaciones</string>
+    <string name="section3">Presentación de Dones</string>
+    <string name="section4">Comunión</string>
+    <string name="section5">Post - Comunión</string>
+    <string name="section6">Varios - Himnos</string>
+    <string name="section7">Latín</string>
+    <string name="section8">Ssmo. Cuerpo y Sangre de Cristo</string>
+    <string name="section9">Sgdo. Corazón de Jesús</string>
+    <string name="section10">Sacramentos y Sacramentales</string>
+    <string name="section11">Vocacionales</string>
+    <string name="section12">Adviento</string>
+    <string name="section13">Navidad</string>
+    <string name="section14">Cuaresma</string>
+    <string name="section15">Pascua</string>
+    <string name="section16">Pentecostés</string>
+    <string name="section17">Virgen María</string>
+    <string name="section18">Salmos</string>
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="app_version">v 1.2.1</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 
 </resources>

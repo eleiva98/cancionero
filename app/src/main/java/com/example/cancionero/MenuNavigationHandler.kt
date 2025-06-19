@@ -25,6 +25,7 @@ class MenuNavigationHandler(private val drawerLayout: DrawerLayout, private val 
             R.id.menu_canciones15 -> 14
             R.id.menu_canciones16 -> 15
             R.id.menu_canciones17 -> 16
+            R.id.menu_canciones18 -> 17
             // Agrega los casos para los demás ítems del menú
             else -> -1
         }

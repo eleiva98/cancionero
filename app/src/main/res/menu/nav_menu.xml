@@ -3,7 +3,8 @@
 
     <item
         android:id="@+id/menu_canciones1"
-        android:title="@string/section1" />
+        android:title="@string/section1"
+        />
 
     <item
         android:id="@+id/menu_canciones2"
@@ -68,6 +69,11 @@
     <item
         android:id="@+id/menu_canciones17"
         android:title="@string/section17" />
+
+    <item
+        android:id="@+id/menu_canciones18"
+        android:title="@string/section18" />
+
 
 
 </menu>

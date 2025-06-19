@@ -4,4 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#225F8B</color>
 	<color name="gold">#E6AF5C</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="dark_gray">#D5D5D5</color>
+
+
 </resources>

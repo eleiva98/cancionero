@@ -18,26 +18,47 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:titleTextColor="@android:color/white"/>
+            android:background="@color/blue"
+            app:titleTextColor="@android:color/white"
+            app:menu="@menu/more_menu"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+<!--
+        <Button
+            android:id="@+id/btn_more"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/ic_more_vert"
+            />
+-->
+
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
             android:contentDescription="WebView"/>
 
        <Button
             android:id="@+id/btnScrollToTop"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
             android:rotation="180"
-            android:background="@drawable/rounded_button_background"
+            android:background="@drawable/arrow_up"
+           app:tint="@android:color/white"
+           android:tintMode="src_in"
             />
+
+
 
     </RelativeLayout>
 

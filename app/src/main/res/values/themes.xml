@@ -5,6 +5,7 @@
     <style name="Theme.Cancionero" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- ... otras configuraciones ... -->
         <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Configuración del ícono de hamburguesa -->
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="navigationViewStyle">@style/NavigationViewStyle</item>

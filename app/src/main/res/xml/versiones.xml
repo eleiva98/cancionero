@@ -12,6 +12,25 @@
     - Agrandar tamaño de letra
     - Links a canciones como botones
     - Ajustes. Acerca de.
+
+
+
+
+    Donde: v1.2.3
+
+X (major): Cambios grandes o incompatibles con versiones anteriores.
+
+Y (minor): Nuevas funcionalidades sin romper compatibilidad.
+
+Z (patch): Arreglos o mejoras pequeñas.
+
+Ejemplos:
+
+v1.0.0: primera versión estable.
+
+v1.1.0: agregaste nuevas funciones.
+
+v1.1.1: corregiste errores menores.
     -->
 <full-backup-content>
 </full-backup-content>

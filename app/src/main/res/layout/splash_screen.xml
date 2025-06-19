@@ -12,15 +12,67 @@
         android:layout_marginTop="240dp"
         android:src="@mipmap/ic_launcher" />
 
+
     <TextView
-        android:id="@+id/textViewLoading"
+        android:id="@+id/textappname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewLogo"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
         android:text="@string/app_name"
         android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:layout_below="@id/imageViewLogo"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textversion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textappname"
+        android:layout_marginTop="5dp"
+        android:layout_centerInParent="true"
+        android:text="@string/app_version"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textAdvertence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textversion"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="120dp"
+          android:text="Active el Modo Avión para evitar distracciones"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/textViewSemi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textappname"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="361dp"
+        android:text="@string/semi"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/textarqui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewSemi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="Arquidiócesis de Santa Fe de la Vera Cruz"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="italic" />
+
+
+
+
+
 
 </RelativeLayout>

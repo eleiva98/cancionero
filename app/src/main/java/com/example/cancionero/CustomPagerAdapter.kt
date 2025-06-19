@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.viewpager.widget.PagerAdapter
-
+import com.example.cancionero.PreferenceUtils.loadChordVisibilityPreference
 
 
 class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
@@ -32,7 +33,8 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         "https://cancionero-2024.web.app/canciones14.htm",
         "https://cancionero-2024.web.app/canciones15.htm",
         "https://cancionero-2024.web.app/canciones16.htm",
-        "https://cancionero-2024.web.app/canciones17.htm",)
+        "https://cancionero-2024.web.app/canciones17.htm",
+        "https://cancionero-2024.web.app/canciones18.htm",)
    private val webViewMap = mutableMapOf<Int, WebView>()
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -43,11 +45,28 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         val view = inflater.inflate(R.layout.item_html_display, container, false)
 
         val webViewContainer: ViewGroup = view.findViewById(R.id.webView)
+
+        webView.settings.javaScriptEnabled = true
+        webView.webViewClient=object : WebViewClient(){
+            override fun onPageFinished (view: WebView, url:String?){
+                super.onPageFinished (view,url)
+                hideChords(webView)
+            }
+        }
+
         webViewContainer.addView(webView)
 
 
+
        webView.loadUrl(htmlUrls[position])
-      webViewMap[position] = webView
+
+        val showChords = loadChordVisibilityPreference(context)
+        val js = if (showChords) {
+            "document.querySelectorAll('.Acordes').forEach(e => e.style.display = 'block');"
+        } else {
+          "document.querySelectorAll('.Acordes').forEach(e => e.style.display = 'none');"
+        }
+        webViewMap[position] = webView
 
         container.addView(view)
         return view
@@ -74,8 +93,24 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         webView.settings.builtInZoomControls = true
         webView.settings.displayZoomControls = false
         webView.settings.domStorageEnabled = true
+		webView.canGoBack()
+		webView.goBack()
+
         return webView}
 
 
 }
+fun hideChords(webView: WebView) {
+    val js = """
+        javascript:(function() {
+            var acordes = document.querySelectorAll('.Acordes');
+            for (var i = 0; i < acordes.length; i++) {
+                acordes[i].style.display = 'none';
+            }
+        })()
+    """.trimIndent()
+
+    webView.evaluateJavascript(js, null)
+}
+
 
