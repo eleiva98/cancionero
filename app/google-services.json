@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050391131445",
+    "project_id": "cancionero-2024",
+    "storage_bucket": "cancionero-2024.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050391131445:android:db1c62651e428c1408087c",
+        "android_client_info": {
+          "package_name": "com.example.cancionero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb-qNGC0GQGhodsoPMPqE0z4FD72Ub72A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
