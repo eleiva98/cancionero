@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/textnav2"
-        android:text="@string/arqui"
+        android:text="Arquidiócesis de Santa Fe de la Vera Cruz"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_below="@+id/textnav"

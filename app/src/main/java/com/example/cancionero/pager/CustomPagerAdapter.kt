@@ -1,22 +1,22 @@
-package com.example.cancionero
+package com.example.cancionero.pager
 
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.viewpager.widget.PagerAdapter
-import com.example.cancionero.PreferenceUtils.loadChordVisibilityPreference
+import com.example.cancionero.settings.PreferenceUtils.loadChordVisibilityPreference
+import com.example.cancionero.R
 
 
-class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
+class CustomPagerAdapter(private val context: Context, private val htmlFilePaths: List<String>) : PagerAdapter() {
     // Tamaño de letra actual seleccionado por el usuario
     private val createdWebViews = mutableListOf<WebView>()
     
     // Lista de URLs alojadas en Firebase Hosting
-    private val htmlUrls = listOf(
+    /*private val htmlUrls = listOf(
         "https://cancionero-2024.web.app/canciones1.htm",
         "https://cancionero-2024.web.app/canciones2.htm",
         "https://cancionero-2024.web.app/canciones3.htm",
@@ -34,7 +34,10 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         "https://cancionero-2024.web.app/canciones15.htm",
         "https://cancionero-2024.web.app/canciones16.htm",
         "https://cancionero-2024.web.app/canciones17.htm",
-        "https://cancionero-2024.web.app/canciones18.htm",)
+        "https://cancionero-2024.web.app/canciones18.htm",) */
+
+    private val htmlFiles: List<String> = htmlFilePaths
+
    private val webViewMap = mutableMapOf<Int, WebView>()
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -46,7 +49,7 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
 
         val webViewContainer: ViewGroup = view.findViewById(R.id.webView)
 
-        webView.settings.javaScriptEnabled = true
+
         webView.webViewClient=object : WebViewClient(){
             override fun onPageFinished (view: WebView, url:String?){
                 super.onPageFinished (view,url)
@@ -57,8 +60,7 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         webViewContainer.addView(webView)
 
 
-
-       webView.loadUrl(htmlUrls[position])
+        webView.loadUrl("file://${htmlFiles[position]}")
 
         val showChords = loadChordVisibilityPreference(context)
         val js = if (showChords) {
@@ -72,7 +74,7 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
         return view
     }
 
-    override fun getCount(): Int {return htmlUrls.size}
+    override fun getCount(): Int {return htmlFiles.size}
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`
@@ -89,10 +91,14 @@ class CustomPagerAdapter (private val context: Context) : PagerAdapter() {
     private fun createWebView(): WebView {
         val webView = WebView(context)
 
+        webView.settings.javaScriptEnabled = true
         webView.settings.setSupportZoom(true)
         webView.settings.builtInZoomControls = true
         webView.settings.displayZoomControls = false
         webView.settings.domStorageEnabled = true
+        webView.settings.allowFileAccess = true
+        webView.settings.allowFileAccessFromFileURLs = true
+        webView.settings.allowUniversalAccessFromFileURLs = true
 		webView.canGoBack()
 		webView.goBack()
 

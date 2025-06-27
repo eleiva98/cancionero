@@ -1,4 +1,4 @@
-package com.example.cancionero
+package com.example.cancionero.pager
 //import android.content.Context
 import androidx.viewpager.widget.ViewPager
 

@@ -1,13 +1,9 @@
-package com.example.cancionero
+package com.example.cancionero.settings
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.preference.SwitchPreferenceCompat
-import com.example.cancionero.PreferenceUtils.saveChordVisibilityPreference
+import com.example.cancionero.R
 
 
 class SettingsActivity : AppCompatActivity() {

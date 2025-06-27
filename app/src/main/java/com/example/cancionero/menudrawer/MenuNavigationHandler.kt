@@ -1,8 +1,10 @@
-package com.example.cancionero
+package com.example.cancionero.menudrawer
 
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.cancionero.R
+import com.example.cancionero.pager.ViewPagerManager
 
 class MenuNavigationHandler(private val drawerLayout: DrawerLayout, private val viewPagerManager: ViewPagerManager) {
 

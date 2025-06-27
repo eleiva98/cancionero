@@ -1,6 +1,8 @@
 package com.example.cancionero
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -12,8 +14,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.common.util.CollectionUtils.listOf
 import com.google.android.material.navigation.NavigationView
-
-
+import com.example.cancionero.htmls.HtmlLoader
+import com.example.cancionero.menudrawer.DrawerInitializer
+import com.example.cancionero.menudrawer.MenuNavigationHandler
+import com.example.cancionero.pager.CustomPagerAdapter
+import com.example.cancionero.pager.ViewPagerManager
+import com.example.cancionero.pager.ViewPagerTitleUpdater
+import com.example.cancionero.settings.SettingsActivity
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
@@ -31,7 +38,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("TEST", "Probando Logcat")
+
         // Inicialización de la barra de herramientas (Toolbar)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -44,6 +51,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Inicialización del ViewPager
         viewPager = findViewById(R.id.viewPager)
         btnScrollToTop = findViewById(R.id.btnScrollToTop)
+
+
+        //Buscar actualizaciones de canciones
+        HtmlLoader.cargarHtml(this, viewPager) { htmlFiles ->
+            pagerAdapter = CustomPagerAdapter(this, htmlFiles)
+            viewPager.adapter = pagerAdapter
+        }
+
+
+
+
 
         // Inicialización de ViewPagerManager
         viewPagerManager = ViewPagerManager(viewPager)
@@ -59,11 +77,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         ViewPagerTitleUpdater(this, titles).attachToViewPager(viewPager)
 
-        // Configurar el adaptador con las URLs
-        pagerAdapter = CustomPagerAdapter(this)
-        viewPager.adapter = pagerAdapter
-
-       btnScrollToTop.setOnClickListener{
+        btnScrollToTop.setOnClickListener{
             val currentWebView = pagerAdapter.getCurrentWebView(viewPager.currentItem)
             currentWebView?.scrollTo(0,0)
         }
@@ -75,10 +89,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Inicialización del NavigationView y configuración del listener para la navegación
         val navigationView: NavigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener(this)
-
-
-        pagerAdapter = CustomPagerAdapter(this)
-        viewPager.adapter = pagerAdapter
 
         // Inicialización del MenuNavigationHandler para manejar la navegación
         menuNavigationHandler = MenuNavigationHandler(drawerLayout, viewPagerManager)
@@ -116,6 +126,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
+
+
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
+    }
 
 
 }

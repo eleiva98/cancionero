@@ -1,4 +1,5 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
 
     >
 
@@ -11,7 +12,7 @@
         app:defaultValue="16"
         app:entries="@array/text_size_options"
         app:entryValues="@array/text_size_values"
-        app:dialogTitle="Elija un tamaño"
+        app:dialogTitle="Elija un Tamaño"
     />
 
 
@@ -22,14 +23,18 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Actualizar">
+    <PreferenceCategory app:title="Actualizar Canciones">
+
+        <SwitchPreferenceCompat
+            android:key="auto_update"
+            android:title="Descarga Automática"
+            android:defaultValue="true"
+            android:summary="Actualizar automáticamente los cantos al abrir la app" />
 
         <Preference
-            app:key="check_updates"
-            app:title = "Buscar Actualizaciones"
-            app:summary="Versión Actual: (@string/app_version)"
-        />
-            >
+            android:key="manual_updates"
+            android:title="Buscar actualizaciones"
+            android:summary="Verifica si hay nuevos cantos disponibles" />
 
     </PreferenceCategory>
 
