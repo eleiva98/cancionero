@@ -3,67 +3,66 @@
 
     >
 
+    <!--
+        <PreferenceCategory app:title="Configuración">
 
-    <PreferenceCategory app:title="Configuración">
-
-<ListPreference
-        app:key="tamaño"
-        app:title="Tamaño de Letra"
-        app:defaultValue="16"
-        app:entries="@array/text_size_options"
-        app:entryValues="@array/text_size_values"
-        app:dialogTitle="Elija un Tamaño"
-    />
+    <ListPreference
+            app:key="tamaño"
+            app:title="Tamaño de Letra"
+            app:defaultValue="16"
+            app:entries="@array/text_size_options"
+            app:entryValues="@array/text_size_values"
+            app:dialogTitle="Elija un Tamaño"
+        />
 
 
 
-        <SwitchPreferenceCompat
-            app:key="show_chords_switch"
-            app:title="Mostrar/Ocultar Acordes" />
+            <SwitchPreferenceCompat
+                app:key="show_chords_switch"
+                app:title="Mostrar/Ocultar Acordes" />
 
-    </PreferenceCategory>
+        </PreferenceCategory>
+    -->
+        <PreferenceCategory app:title="Actualizar Canciones">
 
-    <PreferenceCategory app:title="Actualizar Canciones">
+            <Preference
+                android:key="manual_updates"
+                android:title="Buscar actualizaciones"
+                android:summary="Verifica si hay nuevos cantos disponibles" />
 
-        <SwitchPreferenceCompat
-            android:key="auto_update"
-            android:title="Descarga Automática"
-            android:defaultValue="true"
-            android:summary="Actualizar automáticamente los cantos al abrir la app" />
+                <SwitchPreferenceCompat
+                    app:key="auto_update"
+                    app:title="Actualizar Automáticamente"
+                    android:summary="Las canciones "
+                    android:defaultValue="true"
+            </PreferenceCategory>
 
-        <Preference
-            android:key="manual_updates"
-            android:title="Buscar actualizaciones"
-            android:summary="Verifica si hay nuevos cantos disponibles" />
+      <!--           <PreferenceCategory app:title="Sugerencias">
 
-    </PreferenceCategory>
+                    <Preference
+                        app:key="sug_song"
+                        app:title = "Sugerir una Canción" />
 
-    <PreferenceCategory app:title="Sugerencias">
+                    <Preference
+                        app:key="sug_ideas"
+                        app:title = "Sugerir Ideas" />
 
-        <Preference
-            app:key="sug_song"
-            app:title = "Sugerir una Canción" />
+                </PreferenceCategory>
 
-        <Preference
-            app:key="sug_ideas"
-            app:title = "Sugerir Ideas" />
+                <PreferenceCategory app:title ="Acerca de">
 
-    </PreferenceCategory>
+                    <Preference
+                        app:key="who_weare"
+                        app:title = "Quiénes somos"
+                        />
 
-    <PreferenceCategory app:title ="Acerca de">
+                    <Preference
+                        app:key="suggestions"
+                        app:title = "Sugerencias"
+                        app:summary="Quiéres sugerir "
+                        />
+                    >
 
-        <Preference
-            app:key="who_weare"
-            app:title = "Quiénes somos"
-            />
-
-        <Preference
-            app:key="suggestions"
-            app:title = "Sugerencias"
-            app:summary="Quiéres sugerir "
-            />
-        >
-
-    </PreferenceCategory>
-
-</PreferenceScreen>
+                </PreferenceCategory>
+    -->
+        </PreferenceScreen>

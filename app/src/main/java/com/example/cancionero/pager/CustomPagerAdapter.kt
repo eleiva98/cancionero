@@ -11,69 +11,35 @@ import com.example.cancionero.settings.PreferenceUtils.loadChordVisibilityPrefer
 import com.example.cancionero.R
 
 
-class CustomPagerAdapter(private val context: Context, private val htmlFilePaths: List<String>) : PagerAdapter() {
-    // Tamaño de letra actual seleccionado por el usuario
-    private val createdWebViews = mutableListOf<WebView>()
-    
-    // Lista de URLs alojadas en Firebase Hosting
-    /*private val htmlUrls = listOf(
-        "https://cancionero-2024.web.app/canciones1.htm",
-        "https://cancionero-2024.web.app/canciones2.htm",
-        "https://cancionero-2024.web.app/canciones3.htm",
-        "https://cancionero-2024.web.app/canciones4.htm",
-        "https://cancionero-2024.web.app/canciones5.htm",
-        "https://cancionero-2024.web.app/canciones6.htm",
-        "https://cancionero-2024.web.app/canciones7.htm",
-        "https://cancionero-2024.web.app/canciones8.htm",
-        "https://cancionero-2024.web.app/canciones9.htm",
-        "https://cancionero-2024.web.app/canciones10.htm",
-        "https://cancionero-2024.web.app/canciones11.htm",
-        "https://cancionero-2024.web.app/canciones12.htm",
-        "https://cancionero-2024.web.app/canciones13.htm",
-        "https://cancionero-2024.web.app/canciones14.htm",
-        "https://cancionero-2024.web.app/canciones15.htm",
-        "https://cancionero-2024.web.app/canciones16.htm",
-        "https://cancionero-2024.web.app/canciones17.htm",
-        "https://cancionero-2024.web.app/canciones18.htm",) */
+class CustomPagerAdapter(private val context: Context, private var htmlFilePaths: List<String>) : PagerAdapter() {
 
-    private val htmlFiles: List<String> = htmlFilePaths
+   private val htmlFiles: List<String> = htmlFilePaths
 
    private val webViewMap = mutableMapOf<Int, WebView>()
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val webView = createWebView()
-
-
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.item_html_display, container, false)
-
         val webViewContainer: ViewGroup = view.findViewById(R.id.webView)
-
 
         webView.webViewClient=object : WebViewClient(){
             override fun onPageFinished (view: WebView, url:String?){
                 super.onPageFinished (view,url)
-                hideChords(webView)
-            }
+                }
         }
-
         webViewContainer.addView(webView)
-
-
-        webView.loadUrl("file://${htmlFiles[position]}")
-
-        val showChords = loadChordVisibilityPreference(context)
-        val js = if (showChords) {
-            "document.querySelectorAll('.Acordes').forEach(e => e.style.display = 'block');"
-        } else {
-          "document.querySelectorAll('.Acordes').forEach(e => e.style.display = 'none');"
-        }
+        webView.loadUrl(htmlFiles[position])
         webViewMap[position] = webView
 
         container.addView(view)
         return view
     }
 
+    fun updateFiles(newFiles: List<String>) {
+        htmlFilePaths = newFiles
+        notifyDataSetChanged()
+    }
     override fun getCount(): Int {return htmlFiles.size}
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
@@ -99,24 +65,13 @@ class CustomPagerAdapter(private val context: Context, private val htmlFilePaths
         webView.settings.allowFileAccess = true
         webView.settings.allowFileAccessFromFileURLs = true
         webView.settings.allowUniversalAccessFromFileURLs = true
-		webView.canGoBack()
+
+        webView.canGoBack()
 		webView.goBack()
 
         return webView}
 
 
-}
-fun hideChords(webView: WebView) {
-    val js = """
-        javascript:(function() {
-            var acordes = document.querySelectorAll('.Acordes');
-            for (var i = 0; i < acordes.length; i++) {
-                acordes[i].style.display = 'none';
-            }
-        })()
-    """.trimIndent()
-
-    webView.evaluateJavascript(js, null)
 }
 
 

@@ -2,38 +2,81 @@ package com.example.cancionero.htmls
 
 
 import android.content.Context
-import androidx.preference.PreferenceManager
-import androidx.viewpager.widget.ViewPager
+import android.util.Log
 import java.io.File
-
 object HtmlLoader {
 
-    fun cargarHtml(context: Context, viewPager: ViewPager, onReady: (List<String>) -> Unit) {
-        HtmlVersionChecker.fetchVersionFromServer { remoteVersion ->
-            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            val autoUpdate = prefs.getBoolean("auto_update", true)
+    /**
+     * Devuelve la lista de rutas de archivos HTML locales.
+     * Si hay archivos en almacenamiento externo, los usa.
+     * Si no, devuelve las rutas a los archivos embebidos en assets/html/.
+     */
+    fun getLocalHtmlFiles(context: Context): List<String> {
+        val externalDir = File(context.getExternalFilesDir(null), "html")
+        if (!externalDir.exists()) externalDir.mkdirs()
 
-            if (remoteVersion != null && autoUpdate) {
-                FileDownloader.downloadHtmlFiles(context) { files ->
-                    if (files.isNotEmpty()) {
-                        val htmlFiles = getLocalHtmlFiles(context)
-                        onReady(htmlFiles)
-                    } else {
-                        onReady(getLocalHtmlFiles(context))
+        val externalFiles = externalDir.listFiles { _, name -> name.endsWith(".htm") }
+            ?.sortedBy { it.name }
+            ?.map { "file://${it.absolutePath}"} ?: emptyList()
+
+        return if (externalFiles.isNotEmpty()) {
+            externalFiles
+        } else {
+            getAssetHtmlPaths(context)
+        }
+
+    }
+
+    /**
+     * Copia los archivos HTML embebidos desde assets/html/ a la carpeta externa,
+     * solo si todavía no hay archivos .htm en esa carpeta.
+     */
+    fun copyDefaultHtmlFilesIfNeeded(context: Context) {
+        val htmlDir = File(context.getExternalFilesDir(null), "html")
+        Log.d("MainActivity", "Archivos en carpeta html: ${htmlDir.listFiles()?.map { it.name }}")
+        if (htmlDir.exists()) {
+            val files = htmlDir.listFiles { _, name -> name.endsWith(".htm") }
+            if (files != null && files.isNotEmpty()) {
+                // Ya hay archivos, no copiar
+                return
+            }
+        } else {
+            htmlDir.mkdirs()
+        }
+
+        val assetManager = context.assets
+        try {
+            val assetFiles = assetManager.list("html") ?: emptyArray()
+            for (fileName in assetFiles) {
+                if (fileName.endsWith(".htm")) {
+                    val inputStream = assetManager.open("html/$fileName")
+                    val outFile = File(htmlDir, fileName)
+                    inputStream.use { input ->
+                        outFile.outputStream().use { output ->
+                            input.copyTo(output)
+                        }
                     }
                 }
-            } else {
-                onReady(getLocalHtmlFiles(context))
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
-   private fun getLocalHtmlFiles(context: Context): List<File> {
-       val dir = context.getExternalFilesDir(null) ?: return emptyList()
-       return dir.listFiles()
-            ?.filter { it.name.endsWith(".html") }
-            ?.sortedBy {
-                // Extrae número del nombre como "canciones1.html" -> 1
-                "\\d+".toRegex().find(it.name)?.value?.toIntOrNull() ?: 0}
-            ?: emptyList()
-}}
+    /**
+     * Devuelve rutas para cargar archivos embebidos en assets/html con WebView.
+     * Formato: "file:///android_asset/html/archivo.htm"
+     */
+    private fun getAssetHtmlPaths(context: Context): List<String> {
+        return try {
+            val assetFiles = context.assets.list("html")
+                ?.filter { it.endsWith(".htm") }
+                ?.sorted() ?: emptyList()
+
+            assetFiles.map { "file:///android_asset/html/$it" }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+    }
+}
