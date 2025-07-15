@@ -16,7 +16,8 @@ object HtmlLoader {
         if (!externalDir.exists()) externalDir.mkdirs()
 
         val externalFiles = externalDir.listFiles { _, name -> name.endsWith(".htm") }
-            ?.sortedBy { it.name }
+            ?.sortedBy {  // Extraer el número del nombre del archivo (por ejemplo: canciones12.htm → 12)
+                Regex("""\d+""").find(it.name)?.value?.toIntOrNull() ?: 0 }
             ?.map { "file://${it.absolutePath}"} ?: emptyList()
 
         return if (externalFiles.isNotEmpty()) {
@@ -33,7 +34,6 @@ object HtmlLoader {
      */
     fun copyDefaultHtmlFilesIfNeeded(context: Context) {
         val htmlDir = File(context.getExternalFilesDir(null), "html")
-        Log.d("MainActivity", "Archivos en carpeta html: ${htmlDir.listFiles()?.map { it.name }}")
         if (htmlDir.exists()) {
             val files = htmlDir.listFiles { _, name -> name.endsWith(".htm") }
             if (files != null && files.isNotEmpty()) {

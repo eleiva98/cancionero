@@ -1,5 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.cancionero
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -144,16 +147,56 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewPager.currentItem = 0
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // Obtener la lista actualizada de archivos HTML
-        val updatedFiles = HtmlLoader.getLocalHtmlFiles(this)
-
-        // Recargar el ViewPager con las nuevas canciones
-        refreshPagerAdapter(updatedFiles)
+    companion object {
+        var shouldRefreshHtml: Boolean = false
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("AutoUpdate", "onResume llamado")
+        // 1. Refrescar si hay que hacerlo manualmente
+        if (shouldRefreshHtml) {
+            Log.d("AutoUpdate", "Refrescando desde bandera shouldRefreshHtml")
+            val updatedFiles = getLocalHtmlFiles(this)
+            refreshPagerAdapter(updatedFiles)
+            shouldRefreshHtml = false
+            return // Evita que pase al bloque de auto_download si ya hicimos refresh
+        }
+
+        // 2. Si está activado el auto_download
+        if (isAutoDownloadEnabled()) {
+            Log.d("AutoUpdate", "AutoDownload activado, buscando actualizaciones")
+            val progressDialog = ProgressDialog(this).apply {
+                setMessage("Descargando actualizaciones...")
+                setCancelable(false)
+                show()
+            }
+
+            HtmlUpdater.checkForUpdates(this) { isUpdateAvailable ->
+                Log.d("AutoUpdate", "Resultado checkForUpdates: $isUpdateAvailable")
+
+                if (isUpdateAvailable) {
+                    Log.d("AutoUpdate", "Actualización disponible, comenzando descarga...")
+                    HtmlUpdater.forceDownload(this) { success ->
+                        runOnUiThread {
+                            progressDialog.dismiss()
+                            Log.d("AutoUpdate", "Descarga terminada, éxito: $success")
+
+                            if (success) {
+                                val updatedFiles = HtmlLoader.getLocalHtmlFiles(this)
+                                refreshPagerAdapter(updatedFiles)
+                                Toast.makeText(
+                                    this,
+                                    "Se han actualizado los cantos",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {Toast.makeText(this,"Error al descargar las actualizaciones",Toast.LENGTH_LONG).show()}}}
+                } else {runOnUiThread { progressDialog.dismiss() }}}}}
+
+    private fun isAutoDownloadEnabled(): Boolean {
+        val sharedPref = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
+        return sharedPref.getBoolean("auto_update", false)
+    }
 
 
 

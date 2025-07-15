@@ -26,6 +26,7 @@ object HtmlUpdater {
 
                 val firstTime = localVersion.isBlank()
 
+                Log.d("AutoUpdate", "Comparando versiones... local=$localVersion, remota=$remoteVersion")
 
                 if (firstTime || localVersion != remoteVersion) {
                     deleteLocalHtmlFiles(context)
@@ -77,18 +78,19 @@ object HtmlUpdater {
                 val htmlDir = getHtmlDirectory(context)
 
                 deleteLocalHtmlFiles(context)
-
+                Log.d("AutoUpdate", "Iniciando descarga de archivos HTML...")
                 htmlFileNames.forEach { name ->
                     val fileUrl = "$HTML_BASE_URL$name"
                     val localFile = File(htmlDir, name)
                     localFile.parentFile?.mkdirs()
                     localFile.writeBytes(URL(fileUrl).readBytes())
                 }
-                Log.d("HtmlUpdater", "Archivos en disco tras descarga: ${
-                    File(context.getExternalFilesDir(null), "html").listFiles()?.joinToString { it.name }
+Log.d("HtmlUpdater", "Archivos en disco tras descarga: ${File(context.getExternalFilesDir(null), "html").listFiles()?.joinToString { it.name }
                 }")
 
                 saveLocalVersion(context, remoteVersion)
+                Log.d("AutoUpdate", "Finalizó descarga de archivos HTML con éxito")
+
                 onComplete(true)
             } catch (e: Exception) {
                 e.printStackTrace()

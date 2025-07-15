@@ -1,12 +1,16 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.cancionero.settings
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+//import androidx.preference.SwitchPreferenceCompat
 import com.example.cancionero.MainActivity
 import com.example.cancionero.R
 import com.example.cancionero.htmls.HtmlLoader
@@ -16,8 +20,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
+        //Buscar Actualizaciones
         val manualUpdatePref = findPreference<Preference>("manual_updates")
         manualUpdatePref?.setOnPreferenceClickListener {
+
+            if (!hasInternetConnection()) {
+                Toast.makeText(requireContext(), "No hay conexión a Internet.", Toast.LENGTH_LONG).show()
+                return@setOnPreferenceClickListener true
+            }
+
             val progressDialog = ProgressDialog(requireContext()).apply {
                 setMessage("Buscando actualizaciones...")
                 setCancelable(false)
@@ -29,6 +40,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     progressDialog.dismiss()
 
                     if (isUpdateAvailable) {
+                        // Activar la bandera para refrescar en el onResume
+                        MainActivity.shouldRefreshHtml = true
                         AlertDialog.Builder(requireContext())
                             .setTitle("Actualización disponible")
                             .setMessage("Existe una nueva versión de los cantos. ¿Desea descargarla?")
@@ -79,10 +92,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
 
             true
-        }
+        }}
 
 
-
-
+//----FUNCIONES----------------------------------------------------------------------------------------
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
+
+
+
+
 }

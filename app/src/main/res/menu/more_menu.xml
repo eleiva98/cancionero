@@ -11,13 +11,13 @@
 
         />
 
-       <item
+      <!-- <item
        android:id="@+id/btn_search"
        android:title="Buscar Canción"
        android:icon="@drawable/ic_search"
        android:iconTint="@color/dark_gray"
 
-       />
+       />-->
 
 
 

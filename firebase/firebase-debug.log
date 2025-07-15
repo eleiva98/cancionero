@@ -1,0 +1,29 @@
+[debug] [2025-07-15T14:26:28.612Z] ----------------------------------------------------------------------
+[debug] [2025-07-15T14:26:28.619Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Elías\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2025-07-15T14:26:28.621Z] CLI Version:   13.29.1
+[debug] [2025-07-15T14:26:28.621Z] Platform:      win32
+[debug] [2025-07-15T14:26:28.621Z] Node Version:  v20.17.0
+[debug] [2025-07-15T14:26:28.622Z] Time:          Tue Jul 15 2025 11:26:28 GMT-0300 (hora estándar de Argentina)
+[debug] [2025-07-15T14:26:28.622Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-15T14:26:28.815Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-15T14:26:28.816Z] > authorizing via signed-in user (eleiva49@gmail.com)
+[debug] [2025-07-15T14:26:28.817Z] [iam] checking project cancionero-2024 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-07-15T14:26:28.820Z] Checked if tokens are valid: true, expires at: 1752592023194
+[debug] [2025-07-15T14:26:28.821Z] Checked if tokens are valid: true, expires at: 1752592023194
+[debug] [2025-07-15T14:26:28.824Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/cancionero-2024:testIamPermissions [none]
+[debug] [2025-07-15T14:26:28.824Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/cancionero-2024:testIamPermissions x-goog-quota-user=projects/cancionero-2024
+[debug] [2025-07-15T14:26:28.824Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cancionero-2024:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-07-15T14:26:53.413Z] *** [apiv2] error from fetch(https://cloudresourcemanager.googleapis.com/v1/projects/cancionero-2024:testIamPermissions, {"headers":{},"method":"POST","body":"{\"permissions\":[\"firebase.projects.get\",\"firebasehosting.sites.update\"]}"}): FetchError: request to https://cloudresourcemanager.googleapis.com/v1/projects/cancionero-2024:testIamPermissions failed, reason: 
+[debug] [2025-07-15T14:26:53.414Z] [iam] error while checking permissions, command may fail: Failed to make request to https://cloudresourcemanager.googleapis.com/v1/projects/cancionero-2024:testIamPermissions
+[debug] [2025-07-15T14:26:53.416Z] Checked if tokens are valid: true, expires at: 1752592023194
+[debug] [2025-07-15T14:26:53.416Z] Checked if tokens are valid: true, expires at: 1752592023194
+[debug] [2025-07-15T14:26:53.417Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/cancionero-2024 [none]
+[debug] [2025-07-15T14:26:53.427Z] *** [apiv2] error from fetch(https://firebase.googleapis.com/v1beta1/projects/cancionero-2024, {"headers":{},"method":"GET","signal":{}}): FetchError: request to https://firebase.googleapis.com/v1beta1/projects/cancionero-2024 failed, reason: getaddrinfo ENOTFOUND firebase.googleapis.com
+[debug] [2025-07-15T14:26:53.428Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects/cancionero-2024 (original: request to https://firebase.googleapis.com/v1beta1/projects/cancionero-2024 failed, reason: getaddrinfo ENOTFOUND firebase.googleapis.com)
+[debug] [2025-07-15T14:26:58.450Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\Elías\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:269:49)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+[error] 
+[error] Error: An unexpected error has occurred.
