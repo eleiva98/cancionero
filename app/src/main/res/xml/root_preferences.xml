@@ -23,7 +23,15 @@
 
         </PreferenceCategory>
     -->
-        <PreferenceCategory app:title="Actualizar Canciones">
+
+    <SwitchPreferenceCompat
+        android:key="show_chords"
+        android:title="Mostrar acordes"
+        android:defaultValue="true"
+        android:summary="Muestra u oculta los acordes en las canciones"/>
+
+
+    <PreferenceCategory app:title="Actualizar Canciones">
 
             <Preference
                 android:key="manual_updates"

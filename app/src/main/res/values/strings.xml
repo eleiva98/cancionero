@@ -25,7 +25,7 @@
     <string name="section17">Virgen María</string>
     <string name="section18">Salmos</string>
     <string name="title_activity_settings">Ajustes</string>
-    <string name="app_version">v 1.4.1</string>
+    <string name="app_version">v 1.5</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

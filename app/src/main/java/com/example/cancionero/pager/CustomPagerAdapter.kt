@@ -23,11 +23,23 @@ class CustomPagerAdapter(private val context: Context, private var htmlFilePaths
         val view = inflater.inflate(R.layout.item_html_display, container, false)
         val webViewContainer: ViewGroup = view.findViewById(R.id.webView)
 
-        webView.webViewClient=object : WebViewClient(){
-            override fun onPageFinished (view: WebView, url:String?){
-                super.onPageFinished (view,url)
+        webView.webViewClient=object : WebViewClient() {
+            override fun onPageFinished(view: WebView, url: String?) {
+                super.onPageFinished(view, url)
+
+
+                val showChords = loadChordVisibilityPreference(context)
+                val js = if (showChords) {
+                    "document.querySelectorAll('.Acordes').forEach(el => el.style.display = 'inline');"
+                } else {
+                    "document.querySelectorAll('.Acordes').forEach(el => el.style.display = 'none');"
                 }
+                view.evaluateJavascript(js, null)
+            }
+
         }
+
+
         webViewContainer.addView(webView)
         webView.loadUrl(htmlFiles[position])
         webViewMap[position] = webView
@@ -36,11 +48,12 @@ class CustomPagerAdapter(private val context: Context, private var htmlFilePaths
         return view
     }
 
-    fun updateFiles(newFiles: List<String>) {
-        htmlFilePaths = newFiles
-        notifyDataSetChanged()
+        override fun getCount(): Int {return htmlFiles.size}
+
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE // Fuerza recreación del item (útil si cambia preferencia)
     }
-    override fun getCount(): Int {return htmlFiles.size}
+
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`

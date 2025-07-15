@@ -153,8 +153,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onResume() {
         super.onResume()
-        Log.d("AutoUpdate", "onResume llamado")
-        // 1. Refrescar si hay que hacerlo manualmente
+        pagerAdapter.notifyDataSetChanged() // fuerza recarga visual
+
+                // 1. Refrescar si hay que hacerlo manualmente
         if (shouldRefreshHtml) {
             Log.d("AutoUpdate", "Refrescando desde bandera shouldRefreshHtml")
             val updatedFiles = getLocalHtmlFiles(this)
