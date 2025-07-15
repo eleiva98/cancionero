@@ -1,70 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:gravity="center_horizontal">
+    android:background="@color/white">
 
-    <Space
+    <!-- BLOQUE SUPERIOR anclado arriba -->
+    <LinearLayout
+        android:id="@+id/layoutSuperior"
         android:layout_width="match_parent"
-        android:layout_height="240dp" />
-
-    <ImageView
-        android:id="@+id/imageViewLogo"
-        android:layout_width="145dp"
-        android:layout_height="145dp"
-        android:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/textappname"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/app_name"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        />
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="190dp"
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/textViewSemi"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textappname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/app_name"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textViewSemi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/semi"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/textarqui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Arquidiócesis de Santa Fe de la Vera Cruz"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <!-- BLOQUE INFERIOR anclado abajo -->
+    <LinearLayout
+        android:id="@+id/layoutInferior"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/semi"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/textarqui"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Arquidiócesis de Santa Fe de la Vera Cruz"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="italic"
-        />
+        <TextView
+            android:id="@+id/textAdvertence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Active el Modo Avión para evitar distracciones"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/textAdvertence"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:text="Active el Modo Avión para evitar distracciones"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="15sp" />
+        <TextView
+            android:id="@+id/textversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/app_version"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textversion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/app_version"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="15sp"
-        />
-
-
-
-</LinearLayout>
+</RelativeLayout>
