@@ -16,9 +16,9 @@
             android:name=".settings.SettingsActivity"
             android:exported="true"
             android:label="@string/title_activity_settings"
-            android:theme="@style/PreferenceTheme"/>
+            android:theme="@style/Theme.Cancionero.Settings"/>
         <activity
-            android:name=".SplashActivity"
+            android:name=".settings.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

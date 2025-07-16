@@ -6,6 +6,17 @@
 	<color name="gold">#E6AF5C</color>
     <color name="light_gray">#F5F5F5</color>
     <color name="dark_gray">#D5D5D5</color>
+    <color name="status_bar_gray">#424242</color>
+    <color name="blue_dark">#1E547A</color>
+
+    <!-- Colores adicionales para switches -->
+    <color name="blue_light">#0089F8</color>
+    <color name="surface_color">#303030</color>
+    <color name="switch_track_disabled">#666666</color>
+
+    <!-- Colores para el estado del switch -->
+    <color name="switch_thumb_color">@color/switch_thumb_selector</color>
+    <color name="switch_track_color">@color/switch_track_selector</color>
 
 
 </resources>

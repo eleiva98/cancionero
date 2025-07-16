@@ -1,45 +1,68 @@
-<RelativeLayout android:layout_width="match_parent"
-
-    android:orientation="vertical"
-    android:gravity="left|center_vertical"
-    android:layout_height="90dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:gravity="center_vertical"
     android:background="@color/blue"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+        >
 
     <ImageView
         android:id="@+id/imagenav"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:gravity="center_vertical"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginLeft="20dp"
-        />
+        android:background="@drawable/circle_mask"
+        android:clipToOutline="true"
+        android:contentDescription="Logo" />
 
-
-    <TextView
-        android:id="@+id/textnav"
-        android:text="@string/app_name"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_toRightOf="@+id/imagenav"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_vertical"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginLeft="11dp"
+        android:background="@color/blue"
+        >
 
-    <TextView
-        android:id="@+id/textnav2"
-        android:text="Arquidiócesis de Santa Fe de la Vera Cruz"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/textnav"
-        android:layout_toRightOf="@+id/imagenav"
-        android:layout_marginLeft="15dp"
-        android:layout_gravity="center_vertical"
-        android:textSize="15dp"
-        android:textColor="@color/white"
-        android:textStyle="italic"/>
 
-</RelativeLayout>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/textnav"
+            android:text="Cancionero"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:background="@color/blue"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/textnav2"
+            android:text="Seminario N. S. de Guadalupe"
+            android:background="@color/blue"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/textnav3"
+            android:text="Arq. Santa Fe de la Vera Cruz"
+            android:background="@color/blue"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textStyle="italic"/>
+
+
+    </LinearLayout>
+</LinearLayout>

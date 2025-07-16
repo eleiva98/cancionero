@@ -1,10 +1,12 @@
-package com.example.cancionero
+package com.example.cancionero.settings
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cancionero.MainActivity
+import com.example.cancionero.R
 
 class SplashActivity : AppCompatActivity() {
 
