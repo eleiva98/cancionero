@@ -26,6 +26,7 @@ import com.example.cancionero.menudrawer.MenuNavigationHandler
 import com.example.cancionero.pager.CustomPagerAdapter
 import com.example.cancionero.pager.ViewPagerManager
 import com.example.cancionero.pager.ViewPagerTitleUpdater
+import com.example.cancionero.search.BusquedaFragment
 import com.example.cancionero.settings.SettingsActivity
 
 @Suppress("DEPRECATION")
@@ -86,6 +87,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         btnScrollToTop.setOnClickListener {
             val currentWebView = pagerAdapter.getCurrentWebView(viewPager.currentItem)
             currentWebView?.scrollTo(0, 0)
+        }
+
+        val btnSearch = findViewById<Button>(R.id.btnSearch)
+        btnSearch.setOnClickListener {
+            val dialog = BusquedaFragment()
+            dialog.show(supportFragmentManager, "BusquedaDialog")
         }
 
 

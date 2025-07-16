@@ -31,12 +31,27 @@
             android:layout_below="@id/toolbar"
             android:contentDescription="WebView"/>
 
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@id/btnScrollToTop"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="-5dp"
+            android:background="@drawable/ic_search"
+            app:tint="@android:color/white"
+            android:tintMode="src_in"
+            />
+
+
        <Button
             android:id="@+id/btnScrollToTop"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
             android:layout_margin="16dp"
             android:rotation="180"
             android:background="@drawable/arrow_up"

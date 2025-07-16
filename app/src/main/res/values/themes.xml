@@ -43,7 +43,10 @@
         <item name="trackTint">@color/switch_track_color</item>
     </style>
 
-
+    <style name="DialogTransparent" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 
     <!-- Estilo personalizado para el ícono de hamburguesa -->
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
